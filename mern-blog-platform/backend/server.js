@@ -4,6 +4,7 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const morgan=require('morgan');
 const blogRoutes=require('./routes/blogRoutes');
+const winston = require('winston');
 
 
 
@@ -18,6 +19,13 @@ app.use("/image", express.static("image"));
 mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>console.log('MongoDB connected'))
 .catch(err=>console.log(err));
+
+
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.File({ filename: 'server.log' })
+  ]
+});
 
 app.get('/',(req,res)=>res.send('MERN blog platform running '));
 const PORT=process.env.PORT||3000;
