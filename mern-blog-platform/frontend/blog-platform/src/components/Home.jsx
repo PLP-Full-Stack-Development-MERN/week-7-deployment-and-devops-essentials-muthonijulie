@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import "../App.css"
+import { Link } from "react-router-dom";
+import "../App.css";
 
 const API_URL = "http://localhost:3000";
 
@@ -21,16 +21,16 @@ function Home() {
       <div className="blog-grid">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <article key={post.id} className="blog-post">
-              <img src={`${API_URL}/images/${post.image}`} alt={post.title} className="blog-image" />
+            <article key={post._id} className="blog-post">
+              <img src={`${API_URL}/image/${post.image}`} alt={post.title} className="blog-image" />
               <div className="blog-content">
                 <h3 className="post-title">
-                  <a href={post.href}>{post.title}</a>
+                  <Link to={`/post/${post._id}`}>{post.title}</Link>
                 </h3>
-                <p className="post-description">{post.description}</p>
+                <p className="post-content">{post.content}</p>
               </div>
               <div className="blog-footer">
-                <img src={`${API_URL}/authors/${post.author.imageUrl}`} alt={post.author.name} className="author-image" />
+                <img src={post.author.imageUrl} alt={post.author.name} className="author-image" />
                 <div className="author-info">
                   <p className="author-name">{post.author.name}</p>
                   <p className="author-role">{post.author.role}</p>
@@ -42,9 +42,8 @@ function Home() {
           <p className="no-posts">No blog posts available.</p>
         )}
       </div>
-  </div>
+    </div>
   );
 }
 
-
-export default Home
+export default Home;

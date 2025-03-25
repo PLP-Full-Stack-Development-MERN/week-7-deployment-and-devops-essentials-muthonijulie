@@ -1,22 +1,41 @@
-import { useState } from  "react";
+import { useState } from "react";
 import axios from "axios";
-import "../App.css"
+import "../App.css";
 
 const API_URL = "http://localhost:3000";
+
 function Post() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleImageUpload = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim() || !content.trim()) {
       alert("Title and content cannot be empty.");
       return;
     }
-    axios
-      .post(`${API_URL}/blogs`, { title, content, author: "Admin" })
-      .then(() => (window.location.href = "/"))
-      .catch((err) => console.error("Error:", err));
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", image);
+    formData.append("authorName", "Admin");
+    formData.append("authorRole", "Editor");
+    formData.append("authorImageUrl", "https://example.com/default-profile.jpg");
+
+    try {
+      await axios.post(`${API_URL}/blogs/create`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      window.location.href = "/";
+    } catch (err) {
+      console.error("Error:", err);
+    }
   };
 
   return (
@@ -38,6 +57,13 @@ function Post() {
           onChange={(e) => setContent(e.target.value)}
           required
         ></textarea>
+        <input
+          type="file"
+          accept="image/*"
+          className="input-field"
+          onChange={handleImageUpload}
+          required
+        />
         <button type="submit" className="submit-btn">
           Publish Post
         </button>
@@ -46,6 +72,5 @@ function Post() {
   );
 }
 
+export default Post;
 
- 
-export default Post

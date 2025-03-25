@@ -1,16 +1,137 @@
-.form-container {
-  max-width: 600px;
-  margin: auto;
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Blog Container */
+.blog-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.blog-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.blog-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Blog Post Card */
+.blog-post {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-content {
   padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-title a {
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+  color: #007bff;
+}
+
+.post-content {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Blog Footer */
+.blog-footer {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+}
+
+.author-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.author-info {
+  text-align: left;
+}
+
+.author-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.author-role {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Form Styling */
+.form-container {
+  width: 50%;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-title {
+  font-size: 1.8rem;
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -22,28 +143,48 @@
 .input-field,
 .textarea-field {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .textarea-field {
   height: 150px;
-  resize: vertical;
+  resize: none;
 }
 
 .submit-btn {
   background: #007bff;
   color: white;
-  padding: 10px;
+  padding: 12px;
+  font-size: 1rem;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .submit-btn:hover {
   background: #0056b3;
+}
+
+/* No Posts Message */
+.no-posts {
+  font-size: 1.2rem;
+  color: #777;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
 }
